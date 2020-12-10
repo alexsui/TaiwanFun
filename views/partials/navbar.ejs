@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
+    <a class="navbar-brand" href="/">TaiwanFun</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link" href="/">首頁<span class="sr-only">(current)</span></a>
+        </li>    
+        <li class="nav-item">
+          <a class="nav-link" href="/articles/map">地圖</a>
+        </li>   
+        <li class="nav-item">
+            <a class="nav-link" href="/articles">全部文章</a>
+          </li>
+          <% if(currentUser){ %> 
+          <li class="nav-item">
+            <a class="nav-link" href="/articles/myArticles">我的文章</a>
+          </li>
+          <%}%>
+        <li class="nav-item">
+            <a class="nav-link" href="/articles/new">新增文章</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav navRight">
+        <% if(!currentUser){ %> 
+        <a class="nav-link" href="/login">登入</a>
+        <a class="nav-link" href="/register">註冊</a>
+        <%}else{%>
+          <a class="nav-link" href="/logout">登出</a>
+        <%}%>
+        
+      </ul>
+    </div>
+  </nav>

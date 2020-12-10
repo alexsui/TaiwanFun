@@ -1,0 +1,40 @@
+<% layout('/layout/boilerplate') -%>
+<% block('head').append('<link rel="stylesheet" href="/css/star.css">') %>
+<div class="container">
+    <div class="row">
+      <%if(article.reviews==""){%>
+        <div class="col-md-6 offset-3 no-comment-all">
+          <h1 class="text-center my-4">沒有評論</h1>
+          <a href="/articles/<%=article._id%>/reviews " class="btn btn-primary  btn-block">回到新增評論</a>
+        </div>
+      
+      <%}else{%>
+        <%for(let review of reviews){%>
+            <div class="col-md-6 my-3">
+                <div class="card text-center w-75">
+                  <div class="card-header d-flex justify-content-between p-0">
+                    <h5 class="card-title m-3 font-weight-bold"><%=review.author.name%></h5>
+                    <p class="starability-result  m-3" data-rating="<%=review.rating  %>">
+                      Rated:<%=review.rating %> stars
+                    </p>
+                  <%if(currentUser&&review.author.equals(currentUser._id)){%>
+                    <form action="javascript:void(0);" method="POST" class="m-3">
+                      <button type="submit"class=" float-right btn btn-outline-danger"data-toggle="modal" data-target="#deleteReview">刪除</button>
+                  </form>
+                  <%}%>
+                  </div>
+                    <div class="card-body">
+                 
+                      <p class="card-text"><%=review.body  %> </p>
+                    </div>
+                    <div class="card-footer p-1">
+                      <p class="text-muted ">建立<%=review.createDate%></p>                 
+                    </div>
+                  </div>
+            </div>
+             
+        <%}%>
+        
+        <%}%>
+    </div>
+  </div>    

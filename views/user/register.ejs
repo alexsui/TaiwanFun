@@ -1,0 +1,28 @@
+<% layout('/layout/boilerplate') -%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3 text-white bg-dark py-3 rounded my-3">
+            <h3 class="text-center">註冊</h3>
+            <form method="POST" action="/register">
+                <div class="form-group">
+                  <label for="email">Email地址</label>
+                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="name">暱稱:</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                  </div>
+                <div class="form-group">
+                  <label for="password">密碼</label>
+                  <input type="password" class="form-control" id="password"name="password">
+                </div>
+                <div class="form-group">
+                    <label for="checkPassword">確認密碼</label>
+                    <input type="password" class="form-control" id="checkPassword"name="checkPassword">
+                </div>
+                <button type="submit" class="btn btn-primary">註冊</button>
+              </form>
+        </div>
+        
+    </div>
+</div>

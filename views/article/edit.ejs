@@ -1,0 +1,80 @@
+<% layout('/layout/boilerplate') -%>
+<div class="container">
+  <div class="col-md-6 offset-md-3">
+
+    <form method="POST" action="/articles/<%=article._id%>?_method=PUT" class="my-3"novalidate enctype="multipart/form-data">
+  <div class="row">
+    <div class="col my-3 articleForm">
+      <h1 class="text-center mt-3">編輯文章</h1>
+    <div class="form-group">
+      <label for="title">標題</label>
+      <input type="text" class="form-control" id="title"name="article[title]" value="<%=article.title  %>"autofocus required >
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="city">城市</label>
+      <input type="text" class="form-control" id="city" name="article[city]" value="<%=article.city  %>"required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="category" >分類</label>
+        <select id="category" name="article[category]" class="form-control"required>
+          <option  value="attraction"<%=article.category==='attraction'?"selected":""%>>景點</option>
+          <option value="food"<%=article.category==='food'?"selected":""%>>食物</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="images">圖片</label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="images"name="images" aria-describedby="images"required multiple>
+          <label class="custom-file-label" for="images">Choose file</label>
+        </div>  
+        <div class="valid-feedback">
+            Looks good!
+          </div>
+    </div>
+    <!-- <div class="form-group">
+        <label for="image">圖片</label>
+        <input type="text" class="form-control" id="image"name="article[image]" required>  
+        <div class="valid-feedback">
+            Looks good!
+          </div>
+    </div> -->
+    <div class="form-group">
+        <label for="content">內容</label>
+        <textarea class="form-control" id="content"name="article[content]" rows="3"required ><%=article.content  %></textarea>
+      </div>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      <div class="container">
+        <div class="row row-cols-2">
+            
+              <%article.images.forEach((img,i)=>{%>
+                <div class="form-group">
+                  <div class="col">
+                    <img src="<%=img.thumbnail%>" alt="" class="img-thumbnail"><br>
+                    <label for="img-<%=i%>"deleteImages>刪除</label>
+                    <input type="checkbox"name="deleteImages[]"id="img-<%=i%>" value="<%=img.filename%>">
+                  </div>
+                </div>
+              <%})%> 
+        </div>
+      </div>
+      
+      <input type="hidden"name="article[createDate]"value="<%=article.createDate%> ">
+    <button type="submit" class="btn btn-primary float-right">編輯</button>
+    </div>
+    
+  </div>
+  
+  </form>
+  </div>
+</div>
+
+
+  <script src="/js/formValidation.js"></script>

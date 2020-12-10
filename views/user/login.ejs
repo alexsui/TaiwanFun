@@ -1,0 +1,23 @@
+<% layout('/layout/boilerplate') -%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3 bg-dark text-white my-3 py-3 rounded">
+            <h3 class="text-center">登入</h3>
+            <form  method="POST" action="/login">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+                </div>
+                <div class="form-group">
+                  <label for="password">密碼</label>
+                  <input type="password" class="form-control" id="password"name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">登入</button>
+              </form>
+              <hr>
+              <p class="text-center small">或嘗試一鍵登入</p>
+              <a href="/auth/google"><img class="googleLogo" src="/images/google-logo-9808.png" alt=""></a>
+        </div>
+        
+    </div>
+</div>

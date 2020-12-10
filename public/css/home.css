@@ -1,0 +1,36 @@
+body{
+    height:100vh;
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(https://images.unsplash.com/photo-1470004914212-05527e49370b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=926&q=80);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:50% 85%;
+    text-shadow: 0 0.05rem 0.1rem rgba(0,0,0,0.5);
+}
+main{
+    width:50%;
+    align-self: center;
+}
+.cover-container{
+    max-width:65vw;
+}
+.nav-link{
+    color:rgba(255, 255, 255,0.5);
+    font-weight: 700;
+    margin-left: 1rem;
+}
+.nav-link:hover{
+    border-bottom: 2px solid white;
+    color:rgba(255, 255, 255,0.5);
+}
+.nav-link.active{
+    border-bottom: 2px solid white;
+    color:white
+}
+#homeBtn1,#homeBtn2,#homeBtn3{
+   color:black;
+   text-shadow: none;
+   background-color: rgba(255, 255, 255);
+}
+#homeBtn:hover,#homeBtn2:hover,#homeBtn3:hover{
+    background-color: #eddcd2;
+}

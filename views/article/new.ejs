@@ -1,0 +1,68 @@
+<% layout('/layout/boilerplate') -%>
+<div class="container">
+  <div class="col-md-6 offset-md-3">
+
+<form method="POST" action="/articles" class="form-validation text-white " novalidate enctype="multipart/form-data">
+  <div class="row">
+    <div class="col my-3 articleForm bg-dark">
+      <h1 class="text-center mt-3" >新文章</h1>
+    <div class="form-group">
+      <label for="title">標題</label>
+      <input type="text" class="form-control" id="title"name="article[title]" autofocus required >
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="city">城市:</label>
+        <select class="form-control" name="article[city]"id="city" required>
+          <option selected disabled value="">選擇城市..</option>
+          <%for(let key in allCity){%>
+            <%if (allCity.hasOwnProperty(key)) {%>
+              <option value="<%=key%>"><%=allCity[key]%></option>
+            <%}%>
+          <%}%>     
+        </select>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+      <div class="form-group">
+          <label for="category" >分類</label>
+          <select id="category" name="article[category]" class="form-control"required>
+            <option  value="attraction">景點</option>
+            <option value="food">食物</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    
+      <div class="form-group">
+        <label for="images">圖片</label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="images"name="images" aria-describedby="images">
+          <label class="custom-file-label" for="images">Choose file</label>
+        </div>  
+        <div class="valid-feedback">
+            Looks good!
+          </div>
+    </div>
+    <div class="form-group">
+        <label for="content">內容</label>
+        <textarea class="form-control" id="content"name="article[content]" rows="3"required></textarea>
+      </div>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    <button type="submit" class="btn btn-primary float-right">新增</button>
+    </div>
+    
+  </div>
+  
+  </form>
+  </div>
+</div>
+
+  

@@ -1,0 +1,92 @@
+<% layout('/layout/boilerplate') -%>
+<% block('head').append('<link rel="stylesheet" href="/css/star.css">') %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 my-3">
+            <form method=POST action="/articles/<%=article._id%>/reviews"novalidate class="form-validation"id="reviewForm"onsubmit="return radioValidation();" disabled="true">
+                <h1>新增評論</h1>
+                <fieldset class="starability-basic">
+                  <legend>評分:</legend>
+                  <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+                  <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                  <label for="first-rate1" title="Terrible">1 star</label>
+                  <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                  <label for="first-rate2" title="Not good">2 stars</label>
+                  <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                  <label for="first-rate3" title="Average">3 stars</label>
+                  <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                  <label for="first-rate4" title="Very good">4 stars</label>
+                  <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                  <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+                <div class="form-group">
+                    <label for="body" ><h4>內容:</h4></label>
+                    <textarea class="form-control bg-white"  rows="5"name="review[body]" required></textarea>
+                    <div  class="invalid-feedback">
+                     <h6>請輸入內容</h6> 
+                    </div>
+                  </div>
+                  
+                  <input type="button"value="送出" class="btn btn-success float-right"id="submitBtn">
+              </form>
+        </div>
+        <div class="col-md-6 my-3 ">
+            <h1 class="d-inline-block">最新評論</h1> 
+           <a href="/articles/<%=article._id%>/allReviews" class="btn btn-primary btn-lg d-inline-block float-right">全部評論</a>
+           <%if(reviews!=""){%>
+            <%let i=1;%>
+            <%while(reviews.length>=i && i<=3){%>
+                <div class="card text-center my-3 w-75">
+                    <div class="card-header d-flex justify-content-between p-0">
+                      <h5 class="card-title m-3 font-weight-bold"><%=reviews[reviews.length-i].author.name%></h5>
+                      <p class="starability-result  m-3" data-rating="<%=reviews[reviews.length-i].rating  %>">
+                        Rated:<%=reviews[reviews.length-i].rating %> stars
+                      </p>
+                    <%if(currentUser&&reviews[reviews.length-i].author.equals(currentUser._id)){%>
+                      <form action="javascript:void(0);" method="POST" class="m-3">
+                        <button type="submit"class=" float-right btn btn-outline-danger"data-toggle="modal" data-target="#deleteReview">刪除</button>
+                    </form>
+                    <%}%>
+                    </div>
+                    <div class="card-body">
+                      
+                      <p class="card-text"><%=reviews[reviews.length-i].body  %> </p>
+                    </div>
+                    <div class="card-footer text-muted">
+                      建立<%=reviews[reviews.length-i].createDate%>
+                    </div>
+                    
+                  </div>
+                  <!-- Modal -->
+                <div class="modal fade" id="deleteReview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title text-danger" id="exampleModalLabel">警告</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        確定要刪除評論嗎?
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form action="/articles/<%=article._id%>/reviews/<%=reviews[reviews.length-i]._id%>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-primary">確定</button>
+                        </form>
+                        
+                        </div>
+                    </div>
+                    </div>
+                </div>          
+                <%i++;%>
+                <%}%> 
+            <%}else{%> 
+            <h4 class="text-muted no-comment-new">沒有評論</h4>  
+            <%}%>       
+        </div>
+    </div>
+</div>
+<script src="/js/formValidation.js"></script>
+<script src="/js/validateRating.js"></script>
