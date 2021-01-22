@@ -9,7 +9,7 @@
 
 </div>
 <div class="container">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-6 offset-md-3 article-margin">
         <%if(articles.length===0){%>
             <h3 class="text-center m-3 text-muted">沒有文章</h3>
         <%}else{%>
@@ -24,7 +24,7 @@
                         <span class="float-right badge <%=article.category==="food"?"badge-success":"badge-warning"%> p-2"><%=article.category%></span>
                         
                         <h5 class="card-title d-inline-block m-1 "><%=article.title%></h5>
-                        <a class="btn btn-outline-info btn-sm rounded-circle d-inline-block m-1 p-1 pt-0" href="/articles/city/<%=article.city%>"><%=allCity[article.city]%></a>
+                        <a class="btn btn-outline-info btn-sm rounded-circle d-inline-block m-1 p-1 pt-0" href="/articles?q=city&city=<%=article.city%>"><%=allCity[article.city]%></a>
                         <p class="card-text"><%=article.content.substring(0,70)%></p>
                         <small class="text-muted d-block"><%=article.createDate%></small>
                         <a href="/articles/<%=article._id%> "class="btn btn-primary btn-sm float-right">查看內容</a>

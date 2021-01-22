@@ -6,6 +6,26 @@ const{cloudinary}=require("../cloudinary/index");
 const allCity=require("../utils/city")
 
 module.exports.index=catchAsync(async(req,res)=>{
+    const {q}=req.query;
+    if(q){
+        if(q==="myArticle"){
+            const articles=await Article.find({author:req.user._id});
+            return res.render('article/index',{articles});
+        }else if(q==="food"||q==="attraction"){
+            const category=q;
+            const articles=await Article.find({category})
+            return res.render("article/category",{articles,category});
+        }else if(q==="city"){
+            const{city}=req.query;
+            const articles=await Article.find({city});
+            if(!articles){
+                throw new ExpressError("City not found",404);
+            }
+            return res.render("article/city",{articles,city});
+         }else{
+            throw new ExpressError("Category not found",404);
+        }
+    }
     const articles= await Article.find({});
     res.render("article/index",{articles});
 })
@@ -88,23 +108,6 @@ module.exports.deleteArticle=catchAsync(async(req,res)=>{
     req.flash('success',"成功刪除文章!");
     res.redirect(`/articles/category/${category}`);
 })
-module.exports.renderMyArticle=async(req,res)=>{
-    const articles=await Article.find({author:req.user._id});
-    res.render('article/myArticle',{articles});
-}
-module.exports.renderCategory=catchAsync(async(req,res)=>{
-    const{category}=req.params;
-    if(category!=="food"&&category!=="attraction"){
-        throw new ExpressError("Category not found",404);
-    }
-    const articles=await Article.find({category})
-    res.render("article/category",{articles,category});
-})
-module.exports.renderCity=async(req,res)=>{
-    const{city}=req.params;
-    const articles=await Article.find({city});
-    res.render("article/city",{articles,city});
-}
 module.exports.showMap=(req,res)=>{
     res.render("map");
 }

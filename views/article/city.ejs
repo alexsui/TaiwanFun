@@ -4,7 +4,7 @@
     <h1 class="text-center"><%=allCity[city]%></h1>
 </div>
 <div class="container">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-6 offset-md-3 article-margin">
         <%if(articles.length===0){%>
             <h3 class="text-center m-3 text-muted">沒有文章</h3>
         <%}else{%>
@@ -18,7 +18,7 @@
                   </div>
                   <div class="col-md-8">
                      <div class="card-body pb-3 ">
-                        <a href="/articles/category/<%=article.category%> " class="float-right badge <%=article.category==="food"?"badge-success":"badge-warning"%> p-2"><%=article.category%></a>
+                        <a href="/articles?q=<%=article.category%> " class="float-right badge <%=article.category==="food"?"badge-success":"badge-warning"%> p-2"><%=article.category%></a>
                         
                         <h5 class="card-title d-inline-block m-1 "><%=article.title%></h5>
                         <a class="btn btn-outline-info btn-sm rounded-circle d-inline-block m-1 p-1 pt-0" href="/articles/city/<%=article.city%>"><%=allCity[article.city]%></a>

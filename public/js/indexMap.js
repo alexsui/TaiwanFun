@@ -31,7 +31,7 @@ map.data.addListener('click',function(e){
     if (status == 'OK') {
       map.setCenter(results[0].geometry.location);
       var infowindow = new google.maps.InfoWindow({
-        content: `<h4><a href="/articles/city/${e.feature.j.ISO3166}">${e.feature.j.NAME_2014}</a></h4>`,
+        content: `<h4><a href="/articles?q=city&city=${e.feature.j.ISO3166}">${e.feature.j.NAME_2014}</a></h4>`,
         map: map,
         position: results[0].geometry.location
       });
